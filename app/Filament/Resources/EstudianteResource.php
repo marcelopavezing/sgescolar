@@ -49,21 +49,28 @@ class EstudianteResource extends Resource
                     ->maxLength(100),
                 
                 // Campo de selección para el género (relación con la tabla `generos`)
-                Forms\Components\Select::make('genero')
+                Forms\Components\Select::make('id_genero')
                     ->label('Género')
                     ->relationship('genero', 'nombre')
                     ->required(),
                 
                 // Campo de selección para la región (relación con la tabla `regiones`)
-                Forms\Components\Select::make('region')
+                Forms\Components\Select::make('id_region')
                     ->label('Región')
                     ->relationship('region', 'nombre')
-                    ->required(),
+                    ->required()
+                    ->live(),
                 
                 // Campo de selección para la comuna (relación con la tabla `comunas`)
-                Forms\Components\Select::make('ciudad')
+                Forms\Components\Select::make('id_ciudad')
                     ->label('Comuna')
                     ->relationship('comuna', 'nombre')
+                    ->options(function (callable $get) {
+                        $regionId = $get('id_region');
+                        return $regionId 
+                            ? \App\Models\Comuna::where('id_region', $regionId)->pluck('nombre', 'id')
+                            : [];
+                    })
                     ->required(),
                 
                 Forms\Components\TextInput::make('direccion')

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class RegionResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Configuración';
     protected static ?string $model = Region::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';

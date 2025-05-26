@@ -12,6 +12,7 @@ use Filament\Tables\Table;
 
 class ComunaResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Configuración';
     protected static ?string $model = Comuna::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';

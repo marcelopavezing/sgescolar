@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GeneroResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Configuración';
     protected static ?string $model = Genero::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
